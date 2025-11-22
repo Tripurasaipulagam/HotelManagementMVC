@@ -1,0 +1,123 @@
+﻿@model IEnumerable<HotelManagementMVC.Models.Room>
+
+@{
+    ViewBag.Title = "Rooms";
+}
+<style>
+    body {
+        background: url('/Content/Images/Hotel Room.jpeg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        min-height: 100vh;
+        padding: 40px;
+        color: white;
+    }
+
+    h2 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    table {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #000;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+    }
+
+    td, th {
+        padding: 10px;
+        text-align: center;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .btn-create {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+        .btn-create:hover {
+            background-color: #218838;
+        }
+</style>
+
+<div class="overlay">
+    <h2>Available Rooms</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn-create">Create New</a>
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricePerNight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerNight)
+                </td>
+                <td>
+                    @if (item.IsAvailable)
+                    {
+                        <span style="color: green; font-weight: bold;">Available</span>
+                    }
+                    else
+                    {
+                        <span style="color: red; font-weight: bold;">Booked</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

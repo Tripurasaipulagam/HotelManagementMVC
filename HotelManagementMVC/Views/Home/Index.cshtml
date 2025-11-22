@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+
+}
+
+<style>
+    body {
+        background: url('/Content/Images/Hotel.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px #000;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+    }
+
+    .btn-nav {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        margin: 10px;
+        font-size: 1.1em;
+        transition: background-color 0.3s;
+    }
+
+        .btn-nav:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="overlay">
+    <h1>Welcome to Genshin Hotel's</h1>
+    <p>Your comfort is our priority — Manage bookings, rooms, and customers with ease.</p>
+
+    <div>
+        <a href="@Url.Action("Index", "Customer")" class="btn-nav">Customers</a>
+        <a href="@Url.Action("Index", "Room")" class="btn-nav">Rooms</a>
+        <a href="@Url.Action("Index", "Booking")" class="btn-nav">Bookings</a>
+    </div>
+</div>
+

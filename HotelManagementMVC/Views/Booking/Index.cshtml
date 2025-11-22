@@ -1,0 +1,148 @@
+﻿@model IEnumerable<HotelManagementMVC.Models.Booking>
+
+@{
+    ViewBag.Title = "Bookings";
+}
+
+<style>
+    body {
+        background: url('/Content/Images/Booking.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        min-height: 100vh;
+        padding: 40px;
+        color: white;
+    }
+    
+    h2 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 5px #000;
+    }
+
+    .table-container {
+        width: 90%;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        overflow-x: auto; /* allows horizontal scroll if screen is small */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        table-layout: auto; /* allows columns to expand naturally */
+    }
+
+    th, td {
+        padding: 12px 18px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    th {
+        background-color: #17a2b8;
+        color: white;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+    td {
+        font-size: 15px;
+        color: #fff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    tr:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .btn-create {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-bottom: 20px;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+        .btn-create:hover {
+            background-color: #218838;
+        }
+</style>
+
+<div class="overlay">
+    <h2>Booking Details</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn-create">Create New Booking</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookingId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookingId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
